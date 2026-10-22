@@ -83,6 +83,18 @@
   .music-toggle span{font-size:17px}
   .reveal{opacity:0;transform:translateY(28px);transition:opacity .9s ease,transform .9s ease}
   .reveal.in-view{opacity:1;transform:translateY(0)}
+
+  .couple-reveal{position:absolute;inset:0;z-index:5;display:grid;place-items:center;background:linear-gradient(145deg,#f4efe8,#e9dfd2);opacity:0;visibility:hidden;pointer-events:none;transition:opacity .7s ease,visibility .7s}
+  .couple-reveal.play{opacity:1;visibility:visible}
+  .couple-card{width:min(84vw,440px);text-align:center}
+  .couple-visual{position:relative;width:100%;aspect-ratio:4/5;overflow:hidden;background:#d8cbbd;box-shadow:0 24px 60px #4a39251c}
+  .couple-visual img{width:100%;height:100%;object-fit:cover;animation:coupleSpin 4.8s ease-in-out both;filter:saturate(.72)}
+  .couple-visual:after{content:"";position:absolute;inset:0;background:linear-gradient(0deg,rgba(25,22,19,.28),transparent 55%)}
+  .couple-caption{padding:22px 0 0}
+  .couple-caption .serif{font-size:clamp(2.2rem,8vw,3.5rem);line-height:1}
+  .couple-caption p{color:var(--muted);font-size:.7rem;letter-spacing:.2em;text-transform:uppercase;margin-top:14px}
+  @keyframes coupleSpin{0%{transform:scale(1.12) rotate(-2deg);filter:blur(5px) saturate(.6)}15%{filter:blur(0) saturate(.72)}35%{transform:scale(1.04) rotate(2deg)}60%{transform:scale(1.08) rotate(-1.5deg)}85%{transform:scale(1.02) rotate(1deg)}100%{transform:scale(1) rotate(0)}}
+
   @media(max-width:560px){.details{grid-template-columns:1fr;gap:0}.detail{padding:20px 8px}.hero{min-height:85svh}.photo-strip img{min-height:210px}.event{grid-template-columns:72px 1fr}}
   @media(prefers-reduced-motion:reduce){*,*:before,*:after{scroll-behavior:auto!important;animation-duration:.01ms!important;transition-duration:.01ms!important}}
 </style>
@@ -96,7 +108,7 @@
           <div class="envelope">
             <div class="envelope-fold"></div>
             <div class="envelope-flap"></div>
-            <button class="seal" id="openSeal" aria-label="Открыть свадебное приглашение">А & М</button>
+            <button class="seal" id="openSeal" aria-label="Открыть свадебное приглашение">Т & В</button>
           </div>
         </div>
         <h1 class="cover-title serif">Приглашение</h1>
@@ -105,14 +117,26 @@
       </div>
     </section>
 
+    <section class="couple-reveal" id="coupleReveal" aria-label="Романтическое появление молодожёнов">
+      <div class="couple-card">
+        <div class="couple-visual">
+          <img src="https://images.unsplash.com/photo-1519741497674-611481863552?auto=format&fit=crop&w=1200&q=85" alt="Романтический момент молодожёнов">
+        </div>
+        <div class="couple-caption">
+          <div class="serif">Тумэн & Владислава</div>
+          <p>10 июля 2027 · Наша история начинается</p>
+        </div>
+      </div>
+    </section>
+
     <div class="invitation" id="invitation">
       <section class="hero">
-        <!-- Замените wedding-couple.jpg на свою фотографию или видео пары -->
+        <!-- Замените этот видеоблок своим видео: парень кружит девушку на руках -->
         <img class="hero-image" src="https://images.unsplash.com/photo-1519741497674-611481863552?auto=format&fit=crop&w=1800&q=85" alt="Романтичная свадебная сцена">
         <div class="hero-copy">
           <div class="eyebrow">We are getting married</div>
-          <h1 class="serif">Анна <span style="font-size:.55em">&</span> Михаил</h1>
-          <div class="hero-date">20 · ИЮНЯ · 2027</div>
+          <h1 class="serif">Тумэн <span style="font-size:.55em">&</span> Владислава</h1>
+          <div class="hero-date">10 · ИЮЛЯ · 2027</div>
         </div>
       </section>
 
@@ -129,14 +153,14 @@
         <div class="content-inner reveal">
           <div class="eyebrow">Save the date</div>
           <h2 class="section-title serif">Один день.<br>На всю жизнь.</h2>
-          <div class="date-big serif">20.06</div>
+          <div class="date-big serif">10.07</div>
           <div class="date-line"></div>
           <div class="serif" style="font-size:2rem">2027</div>
-          <p style="margin:18px 0 0;color:var(--muted)">Суббота · Начало в 16:00</p>
+          <p style="margin:18px 0 0;color:var(--muted)">Место и время уточняются</p>
           <div class="details">
-            <div class="detail"><strong>Церемония</strong><span>Загородная усадьба<br>Укажите адрес</span></div>
-            <div class="detail"><strong>Ужин</strong><span>Ресторан «Название»<br>Укажите адрес</span></div>
-            <div class="detail"><strong>Встреча</strong><span>Будем ждать вас<br>с 15:30</span></div>
+            <div class="detail"><strong>Место</strong><span>Уточняется<br>Сообщим дополнительно</span></div>
+            <div class="detail"><strong>Время</strong><span>Уточняется<br>Следите за обновлениями</span></div>
+            <div class="detail"><strong>Программа</strong><span>Скоро поделимся<br>всеми деталями</span></div>
           </div>
         </div>
       </section>
@@ -176,7 +200,7 @@
         <div class="content-inner reveal">
           <div class="eyebrow">Kindly reply</div>
           <h2 class="section-title serif">Будете с нами?</h2>
-          <p style="color:var(--muted);font-size:.9rem;line-height:1.7">Пожалуйста, подтвердите присутствие до 1 июня 2027 года.</p>
+          <p style="color:var(--muted);font-size:.9rem;line-height:1.7">Подробности и подтверждение присутствия сообщим дополнительно.</p>
           <form id="rsvpForm">
             <label for="guestName">Ваше имя</label>
             <input id="guestName" name="name" placeholder="Имя и фамилия" required>
@@ -195,8 +219,8 @@
       </section>
       <footer>
         <div class="eyebrow" style="color:#c9b99f">With love</div>
-        <div class="serif" style="margin:14px 0">Анна & Михаил</div>
-        <div style="font-size:.7rem;letter-spacing:.2em">20 · 06 · 2027</div>
+        <div class="serif" style="margin:14px 0">Тумэн & Владислава</div>
+        <div style="font-size:.7rem;letter-spacing:.2em">10 · 07 · 2027</div>
       </footer>
     </div>
   </main>
@@ -221,11 +245,16 @@
     cover.classList.add('opened');
     window.setTimeout(() => {
       cover.style.display = 'none';
-      invitation.classList.add('visible');
+      const coupleReveal = document.getElementById('coupleReveal');
+      coupleReveal.classList.add('play');
       musicToggle.classList.add('show');
       document.body.style.background = '#f4efe8';
-      window.scrollTo({top: 0, behavior: 'smooth'});
-      observeReveals();
+      window.setTimeout(() => {
+        coupleReveal.classList.remove('play');
+        invitation.classList.add('visible');
+        window.scrollTo({top: 0, behavior: 'smooth'});
+        observeReveals();
+      }, 5000);
     }, 950);
     try {
       await music.play();
